@@ -22,6 +22,10 @@ if (Meteor.isClient) {
   });
 
   Template.resolution.events({
+    'click .toggle-checked': function() {
+      Resolutions.update(this._id, {$set: {checked: !this.checked} });
+    },
+
     'click .delete': function(){
       Resolutions.remove(this._id);
     }
