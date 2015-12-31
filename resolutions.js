@@ -18,10 +18,7 @@ if (Meteor.isClient) {
     'submit .new-resolution': function(event){
       var title = event.target.title.value;
 
-      Resolutions.insert({
-        title: title,
-        createdAt: new Date()
-      });
+      Meteor.call("addResolution", title);
 
       event.target.title.value = "";  //clear form
       return false;                   //make sure page doesn't refresh
@@ -53,3 +50,12 @@ if (Meteor.isServer) {
     // code to run on server at startup
   });
 }
+
+Meteor.methods({
+  addResolution: function(title) {
+    Resolutions.insert({
+      title: title,
+      createdAt: new Date()
+    });
+  }
+});
