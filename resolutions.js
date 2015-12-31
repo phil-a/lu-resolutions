@@ -20,6 +20,12 @@ if (Meteor.isClient) {
       return false;                   //make sure page doesn't refresh
     }
   });
+
+  Template.resolution.events({
+    'click .delete': function(){
+      Resolutions.remove(this._id);
+    }
+  });
 }
 
 if (Meteor.isServer) {
